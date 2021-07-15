@@ -22,7 +22,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v2
       with:
         image: huy1219/hello-world
-        tag: latest
+        tag: ${{ github.sha }}
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}

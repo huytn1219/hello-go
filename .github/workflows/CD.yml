@@ -9,7 +9,7 @@ on:
 
 # Workflow jobs
 jobs:
-  build:
+  build-n-push:
     runs-on: ubuntu-latest
     steps:
     - name: Install Go
@@ -28,6 +28,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
   deploy:
+      needs: build-n-push
       runs-on: ubuntu-latest
       steps:
       - name: Checkout Infra Repo

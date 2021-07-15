@@ -21,9 +21,9 @@ jobs:
     - name: Build Container
       uses: mr-smithers-excellent/docker-build-push@v2
       with:
-        image: hello-world
+        image: huy1219/hello-world
         tag: latest
-        registry: docker.io/huy1219/
+        registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}

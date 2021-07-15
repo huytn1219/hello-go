@@ -23,7 +23,7 @@ jobs:
       with:
         image: hello-world
         tag: latest
-        registry: docker.io
+        registry: docker.io/huy1219/
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}

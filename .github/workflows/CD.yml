@@ -1,0 +1,23 @@
+# Workflow name
+name: CD
+
+# Events policy
+on:
+  push:
+    branches:
+    - main
+
+# Workflow jobs
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.16.x
+    - name: Checkout Code
+      uses: actions/checkout@v2
+    - name: Build
+      run: go build -o hello-world main.go
+

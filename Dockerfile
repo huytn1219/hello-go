@@ -8,8 +8,8 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN go build -o /hello-world main.go
+RUN go build -o main.go
 
 EXPOSE 8080
 
-CMD [ "/hello-world" ]
+CMD [ "/main" ]

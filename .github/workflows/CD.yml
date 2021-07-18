@@ -54,4 +54,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: huytn1219/infra
-
+      - name: Update Image Tag
+        uses: imranismail/setup-kustomize@v1
+        run: |
+           kustomize edit set image huy1219/hello-world:${GITHUB_SHA}
+           git add .
+           git commit -m "Set `hello-world` image tag to `${GITHUB_SHA}`"
+           git push

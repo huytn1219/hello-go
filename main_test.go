@@ -13,9 +13,9 @@ func Test_HelloWorld(t *testing.T) {
 	}
 
 	res := httptest.NewRecorder()
-	HelloServer(res, req)
+        index(res, req)
 
-	exp := "!...Hello World...!"
+	exp := "<h1>Hello World</h1>"
 	act := res.Body.String()
 	if exp != act {
 		t.Fatalf("Expected %s gog %s", exp, act)

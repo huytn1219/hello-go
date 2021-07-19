@@ -25,7 +25,7 @@ jobs:
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-go-
-    - name: Checkout Cod e
+    - name: Checkout Code
       uses: actions/checkout@v2
     - name: Build Container
       uses: mr-smithers-excellent/docker-build-push@v2
@@ -54,12 +54,15 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: huytn1219/infra
+          token: ${{ secrets.GITOPS_TOKEN }}
+          ref: 'main'
       - name: Update Image Tag
         uses: imranismail/setup-kustomize@v1
       - run: |
-           kustomize edit set image huy1219/hello-world:${GITHUB_SHA}
            git config --global user.email "gitops@example.com"
            git config --global user.name "GitOps Bot"
+           git checkout gitops
+           kustomize edit set image huy1219/hello-world:${GITHUB_SHA}
            git add .
            git commit -m "Set `hello-world` image tag to `${GITHUB_SHA}`"
-           git push
+           git push origin gitops

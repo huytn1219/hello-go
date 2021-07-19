@@ -58,6 +58,8 @@ jobs:
         uses: imranismail/setup-kustomize@v1
       - run: |
            kustomize edit set image huy1219/hello-world:${GITHUB_SHA}
+           git config --global user.email "gitops@example.com"
+           git config --global user.name "GitOps Bot"
            git add .
            git commit -m "Set `hello-world` image tag to `${GITHUB_SHA}`"
            git push

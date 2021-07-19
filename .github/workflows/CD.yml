@@ -64,7 +64,7 @@ jobs:
       - run: |
            git config --global user.email "gitops@example.com"
            git config --global user.name "GitOps Bot"
-           git checkout gitops
+           git checkout -b gitops
            git pull
            kustomize edit set image huy1219/hello-world:${GITHUB_SHA}
            git add .

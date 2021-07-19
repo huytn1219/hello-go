@@ -51,7 +51,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
         continue-on-error: true
   deploy:
-      needs: build-n-push
+      needs: image_scanning
       runs-on: ubuntu-latest
       steps:
       - name: Checkout Infra Repo

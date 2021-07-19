@@ -36,18 +36,22 @@ jobs:
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@master
-      with:
+  image_scanning:
+      needs: build-n-push
+      runs-on: ubuntu-latest
+      steps:
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
           image-ref: 'huy1219/hello-world:${{ github.sha }}'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
-      continue-on-error: true
+        continue-on-error: true
   deploy:
-      needs: build-n-push
+      needs: image_scanning
       runs-on: ubuntu-latest
       steps:
       - name: Checkout Infra Repo
